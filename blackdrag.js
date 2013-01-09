@@ -1,4 +1,5 @@
 // http://jsfiddle.net/wfbY8/4/
+// http://stackoverflow.com/questions/4117466/javascript-disable-text-selection-via-doubleclick
 function blackdrag_init(){
     var div = document.getElementById('blackdrag');
     div.style.position = 'absolute';
@@ -16,4 +17,8 @@ function mouseDown(e){
 function divMove(e){
     var div = document.getElementById('blackdrag');
     div.style.top = e.clientY + 'px';
+    if (window.getSelection)
+        window.getSelection().removeAllRanges();
+    else if (document.selection)
+        document.selection.empty();
 }
