@@ -16,9 +16,16 @@ function mouseDown(e){
 }
 function divMove(e){
     var div = document.getElementById('blackdrag');
-    div.style.top = e.clientY + 'px';
+    var vscroll = (document.all ? document.scrollTop : window.pageYOffset);
+    div.style.top = (e.clientY + vscroll)+ 'px';
+    div.style.bottom = -vscroll;
     if (window.getSelection)
         window.getSelection().removeAllRanges();
     else if (document.selection)
         document.selection.empty();
+}
+window.onscroll = function(e) {
+    var div = document.getElementById('blackdrag');
+    var vscroll = (document.all ? document.scrollTop : window.pageYOffset);
+    div.style.bottom = -vscroll + 'px';
 }
