@@ -6,6 +6,7 @@ function blackdrag_init(){
     div.style.bottom = 0;
     div.addEventListener('mousedown', mouseDown, false);
     window.addEventListener('mouseup', mouseUp, false);
+    scrolling();
 }
 function mouseUp()
 {
@@ -24,8 +25,9 @@ function divMove(e){
     else if (document.selection)
         document.selection.empty();
 }
-window.onscroll = function(e) {
+function scrolling(e) {
     var div = document.getElementById('blackdrag');
     var vscroll = (document.all ? document.scrollTop : window.pageYOffset);
     div.style.bottom = -vscroll + 'px';
 }
+window.onscroll = scrolling
