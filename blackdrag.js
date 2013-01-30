@@ -31,3 +31,23 @@ function scrolling(e) {
     div.style.bottom = -vscroll + 'px';
 }
 window.onscroll = scrolling
+function checkKey(e) {
+    e = e || window.event;
+    if (e.ctrlKey && (e.keyCode == '38' || e.keyCode == '40')) {
+        var inc = e.shiftKey ? 25 : 5;
+        var div = document.getElementById('blackdrag');
+        var top_pos = div.style.top;
+        if (top_pos == '') return;
+        var top_val = parseInt(top_pos.substring(0, top_pos.indexOf('p')));
+        if (e.keyCode == '38') {
+            // up
+            top_val = top_val - inc;
+        }
+        else if (e.keyCode == '40') {
+            // down
+            top_val = top_val + inc;
+        }
+        div.style.top = top_val + 'px';
+    }
+}
+document.onkeydown = checkKey;
